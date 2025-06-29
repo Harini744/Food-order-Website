@@ -3,28 +3,27 @@ import { useParams } from 'react-router-dom';
 import Navbar from './navbar';
 import { useCart } from './CartContext';
 import { toast } from "react-toastify";
- // ⬅️ Import the CartContext
 
 function Post() {
   const [post, setPost] = useState(null);
   const { id } = useParams();
-  const { addToCart } = useCart(); // ⬅️ Access addToCart from context
+  const { addToCart } = useCart();
 
   useEffect(() => {
-  fetch("/db.json")
-    .then((res) => res.json())
-    .then((data) => {
-      const matchedPost = data.find((item) => item.id === id);
-      setPost(matchedPost);
-    })
-    .catch((err) => console.error("Error fetching post:", err));
-}, [id]);
+    fetch("/db.json")
+      .then((res) => res.json())
+      .then((data) => {
+        // ✅ Convert URL param `id` to number for matching
+        const matchedPost = data.find((item) => item.id === parseInt(id));
+        setPost(matchedPost);
+      })
+      .catch((err) => console.error("Error fetching post:", err));
+  }, [id]);
 
   const handleAddToCart = () => {
     if (post) {
       addToCart(post);
-      toast.success("Order placed") // ⬅️ Add post to cart
-      
+      toast.success("✅ Order placed");
     }
   };
 
