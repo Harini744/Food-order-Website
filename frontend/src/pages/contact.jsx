@@ -21,7 +21,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://food-order-website-backend-qsr5.onrender.com", formData);
+      const response = await axios.post("https://food-order-website-backend-qsr5.onrender.com/api/contact", formData);
 
       console.log("✅ Response:", response.data);
       alert("✅ Thank you! We’ll get back to you soon.");
