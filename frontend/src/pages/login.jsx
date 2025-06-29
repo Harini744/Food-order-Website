@@ -13,7 +13,7 @@ function Login() {
 
   const handleSendOTP = async () => {
     try {
-      await axios.post("http://localhost:5000/api/otp/send", { email });
+      await axios.post("https://food-order-website-backend-qsr5.onrender.com", { email });
       toast.success("OTP sent to your email 📩");
       localStorage.setItem("email", email); // Optional: store for next step
       navigate("/verify"); // 👉 Redirect to VerifyOtp page
