@@ -9,7 +9,7 @@ const contactRoutes = require("./routes/contact");
 
 const app = express();
 app.use(cors({
-  origin:["https://food-order-website-backend-qsr5.onrender.com"],
+  origin:["https://food-order-website-front.onrender.com"],
 }));
 app.use(express.json());
 
