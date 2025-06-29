@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./navbar";
 
 function App() {
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([]);
   const navi = useNavigate();
 
   useEffect(() => {
