@@ -8,7 +8,9 @@ const otpRoutes = require("./routes/otp");
 const contactRoutes = require("./routes/contact");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin:["https://food-order-website-backend-qsr5.onrender.com"],
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI)
