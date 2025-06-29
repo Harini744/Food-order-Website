@@ -7,7 +7,7 @@ function App() {
   const navi = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/posts")
+    fetch("/db.json")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
