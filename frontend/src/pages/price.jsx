@@ -11,7 +11,7 @@ const Price = () => {
 
   const Submit = async () => {
     try {
-     await axios.post("https://food-order-website-backend-qsr5.onrender.com", {
+     await axios.post("https://food-order-website-backend-qsr5.onrender.com/api/cart", {
         items: cartItems,
         totalPrice: total,
       });
