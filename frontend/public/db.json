@@ -1,5 +1,4 @@
-{
-      "posts":[
+[
   {
     "id": 1,
     "name": "Margherita Pizza",
@@ -66,4 +65,4 @@
   }
   
 ]
-}
+
