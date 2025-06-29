@@ -4,14 +4,18 @@ import Navbar from "./navbar";
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const navi = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/db.json")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setPosts(data);
+        console.log("Fetched posts:", data);
+        if (Array.isArray(data)) {
+          setPosts(data);
+        } else {
+          console.error("Data is not an array:", data);
+        }
       })
       .catch((err) => {
         console.error("Error fetching posts:", err);
@@ -20,13 +24,7 @@ function App() {
 
   return (
     <>
-      {/* Navbar */}
       <Navbar />
-
-      {/* About Aroma Bistro */}
-     
-
-      {/* Posts Section */}
       <div
         className="row justify-content-center m-3"
         style={{
@@ -40,36 +38,35 @@ function App() {
           paddingTop: "100px",
         }}
       >
-        {posts &&
-          posts.map((post) => (
+        {posts.map((post) => (
+          <div
+            key={post.id}
+            className="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center"
+          >
             <div
-              key={post.id}
-              className="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center"
+              className="card m-3 text-white bg-dark bg-opacity-75"
+              style={{
+                width: "18rem",
+                boxShadow: "0 8px 16px rgba(0,0,0,0.3)",
+                cursor: "pointer",
+              }}
+              onClick={() => navigate("/post/" + post.id)}
             >
-              <div
-                className="card m-3 text-white bg-dark bg-opacity-75"
-                style={{
-                  width: "18rem",
-                  boxShadow: "0 8px 16px rgba(0,0,0,0.3)",
-                  cursor: "pointer",
-                }}
-                onClick={() => navi("/post/" + post.id)}
-              >
-                <img
-                  src={post.img}
-                  className="card-img-top img-fluid"
-                  alt={`Image of ${post.name}`}
-                  style={{ height: "250px", objectFit: "cover" }}
-                  loading="lazy"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{post.name}</h5>
-                  <p className="card-text">Rating: {post.rating} ⭐</p>
-                  <p className="card-text">₹{post.price}</p>
-                </div>
+              <img
+                src={post.img}
+                className="card-img-top img-fluid"
+                alt={`Image of ${post.name}`}
+                style={{ height: "250px", objectFit: "cover" }}
+                loading="lazy"
+              />
+              <div className="card-body">
+                <h5 className="card-title">{post.name}</h5>
+                <p className="card-text">Rating: {post.rating} ⭐</p>
+                <p className="card-text">₹{post.price}</p>
               </div>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
     </>
   );
