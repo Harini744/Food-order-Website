@@ -8,7 +8,7 @@ const VerifyOtp = () => {
 
   const handleVerify = async () => {
     try {
-      const res = await axios.post("https://food-order-website-backend-qsr5.onrender.com", {
+      const res = await axios.post("https://food-order-website-backend-qsr5.onrender.com/api/otp/verify", {
         email,
         otp, // remove accidental whitespace
       });
