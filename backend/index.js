@@ -10,6 +10,7 @@ const contactRoutes = require("./routes/contact");
 const app = express();
 app.use(cors({
   origin:["https://food-order-website-front.onrender.com"],
+  credentials: true
 }));
 app.use(express.json());
 
