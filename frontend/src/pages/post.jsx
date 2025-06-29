@@ -11,11 +11,14 @@ function Post() {
   const { addToCart } = useCart(); // ⬅️ Access addToCart from context
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/${id}`)
-      .then((res) => res.json())
-      .then((data) => setPost(data))
-      .catch((err) => console.error("Error fetching post:", err));
-  }, [id]);
+  fetch("/db.json")
+    .then((res) => res.json())
+    .then((data) => {
+      const matchedPost = data.find((item) => item.id === id);
+      setPost(matchedPost);
+    })
+    .catch((err) => console.error("Error fetching post:", err));
+}, [id]);
 
   const handleAddToCart = () => {
     if (post) {
