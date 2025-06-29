@@ -18,7 +18,7 @@ const VerifyOtp = () => {
 
       // Save token and redirect
       localStorage.setItem("token", res.data.token);
-      window.location.href = "/home";
+      window.location.href = "/about";
     } catch (err) {
       toast.error("❌ Invalid or expired OTP");
     }
